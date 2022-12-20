@@ -1,1 +1,134 @@
 c++
+1print solid reactangle:
+****
+****
+****
+****
+#include<iostream>
+using namespace std;
+int main(){
+int row;
+cin>>col;
+for(int i=1;i<=rows;i++){
+for(int j=1;j<=col;j++){
+cout<<"*";
+}
+cout<<endl;
+}
+return 0;
+}
+============================================================================================================
+2:print a Halloe reactangle
+5 5
+*****
+*   *
+*   *
+*   *
+*****
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int r,c;
+    cin>>r;
+    cin>>c;
+    for(int i=1;i<=r;i++){
+        for(int j=1;j<=c;j++){
+            if(i==1||i==r||j==1||j==c){
+                cout<<"*";
+            }
+            else{
+                cout<<" ";
+            }
+        }
+        cout<<endl;
+    }
+    return 0;
+}
+============================================================================================================
+3:Print half pyramid pattern uing satars
+5
+*
+**
+***
+****
+*****
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=i;j++){
+            cout<<"*";
+        }
+        cout<<endl;
+    }
+    
+    return 0;
+}
+============================================================================================================
+4:print an Inverted Half pyramid
+4
+****
+***
+**
+*
+###for(int i=n;i>=1;i--){
+============================================================================================================
+5:Print Half Pyramid after 180 degree rotation
+5
+    *
+   **
+  ***
+ ****
+*****
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){
+            if(j<=n-i){
+                cout<<" ";
+            }
+            else{
+                cout<<"*";
+            }
+        }
+        cout<<endl;
+    }
+    
+    return 0;
+}
+============================================================================================================
+6:print Half pyramid using numbres
+1
+12
+123
+1234
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=i;j++){
+            cout<<j<<" ";
+        }
+        cout<<endl;
+    }
+    
+    return 0;
+}
+============================================================================================================
+
+
+
