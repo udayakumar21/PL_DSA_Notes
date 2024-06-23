@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+class Student {
+    string name; // private member variable for storing the name of the student
+
+public:
+    int age; // public member variable for storing the age of the student
+    bool gender; // public member variable for storing the gender of the student (true for male, false for female)
+
+    // Default constructor
+    Student() {
+        cout << "Default constructor called" << endl;
+    }
+
+    // Parameterized constructor
+    Student(string s, int a, bool g) {
+        name = s;
+        age = a;
+        gender = g;
+    }
+
+    // Copy constructor
+    Student(const Student &a) {
+        cout << "Copy constructor called" << endl;
+        name = a.name;
+        age = a.age;
+        gender = a.gender;
+    }
+
+    // Setter function for name
+    void setName(string s) {
+        name = s;
+    }
+
+    // Getter function for name
+    void getName() {
+        cout << name << endl; // Access the private member variable name
+    }
+
+    // Function to print student information
+    void printInfo() {
+        cout << "Name = " << name << endl;
+        cout << "Age = " << age << endl;
+        cout << "Gender = " << (gender ? "Male" : "Female") << endl;
+    }
+};
+
+int main() {
+    // Create a Student object using the parameterized constructor
+    Student a("Udaya", 24, true);
+    a.printInfo(); // Print the information of object a
+
+    // Create a Student object using the default constructor
+    Student b;
+    b.setName("Default");
+    b.age = 0;
+    b.gender = false;
+    b.printInfo(); // Print the information of object b
+
+    // Create a Student object using the copy constructor
+    Student c = a;
+    c.printInfo(); // Print the information of object c
+
+    return 0;
+}
