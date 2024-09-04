@@ -1,0 +1,114 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+    Node(int val) {
+        data = val;
+        next = nullptr;
+    }
+};
+
+void insertAtTail(Node*& head, int val) {
+    Node* n = new Node(val);
+    if (head == nullptr) {
+        head = n;
+        return;
+    }
+    Node* temp = head;
+    while (temp->next != nullptr) {
+        temp = temp->next;
+    }
+    temp->next = n;
+}
+
+void display(Node* head) {
+    Node* temp = head;
+    while (temp != nullptr) {
+        std::cout << temp->data << "->";
+        temp = temp->next;
+    }
+    std::cout << "NULL" << std::endl;
+}
+
+bool detectLoop(Node* head) {
+    if (head == nullptr) return false;
+
+    Node* slow = head;
+    Node* fast = head;
+
+    while (fast != nullptr && fast->next != nullptr) {
+        slow = slow->next;           // Move slow pointer by 1 step
+        fast = fast->next->next;     // Move fast pointer by 2 steps
+
+        if (slow == fast) {
+            return true; // Loop detected
+        }
+    }
+
+    return false; // No loop
+}
+
+void removeLoop(Node* head) {
+    if (head == nullptr || head->next == nullptr) return;
+
+    Node* slow = head;
+    Node* fast = head;
+
+    // Detect loop
+    while (fast != nullptr && fast->next != nullptr) {
+        slow = slow->next;
+        fast = fast->next->next;
+
+        // Loop detected
+        if (slow == fast) {
+            // Move slow to head and keep fast at meeting point
+            slow = head;
+
+            // If loop is at the head node
+            if (slow == fast) {
+                while (fast->next != slow) {
+                    fast = fast->next;
+                }
+            } else {
+                // Move slow and fast one step at a time until they meet
+                while (slow->next != fast->next) {
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+            }
+
+            // Unlink the loop
+            fast->next = nullptr;
+            return;
+        }
+    }
+}
+
+int main() {
+    Node* head = nullptr;
+    insertAtTail(head, 1);
+    insertAtTail(head, 2);
+    insertAtTail(head, 3);
+    insertAtTail(head, 4);
+    insertAtTail(head, 5);
+
+    // Creating a loop for testing: Connecting the last node to the second node
+    head->next->next->next->next->next = head->next;
+
+    if (detectLoop(head)) {
+        std::cout << "Loop detected in the linked list." << std::endl;
+        removeLoop(head);
+        if (!detectLoop(head)) {
+            std::cout << "Loop removed from the linked list." << std::endl;
+        }
+    } else {
+        std::cout << "No loop detected in the linked list." << std::endl;
+    }
+
+    display(head);
+
+    return 0;
+}
